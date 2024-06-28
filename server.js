@@ -9,7 +9,7 @@ const app = express();
 
 app.use(express.json());
 
-const allowedOrigins = ['https://keek-client.vercel.app/'];
+const allowedOrigins = ["http://localhost:3000",'https://keek-client.vercel.app'];
 
 app.use(cors({
   origin: function (origin, callback) {
