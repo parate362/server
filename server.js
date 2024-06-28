@@ -35,9 +35,9 @@ app.use(cors({
 //   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 //   });
 
-app.get("/", (req, res) => {
-  res.send("Hello Keek!");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello Keek!");
+// });
 
 app.use("/api/user", userRouter);
 
