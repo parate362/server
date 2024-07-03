@@ -137,7 +137,9 @@ exports.signInWithMobile = async (req, res) => {
     const { mobileNumber, otp } = req.body;
 
     // Verify OTP
-    const verificationToken = await VerificationToken.findOne({ mobile: mobileNumber });
+    const verificationToken = await VerificationToken.findOne({
+      mobile: mobileNumber,
+    });
     if (!verificationToken || verificationToken.token !== otp) {
       return res.status(400).json({ error: "Invalid OTP" });
     }
@@ -145,7 +147,9 @@ exports.signInWithMobile = async (req, res) => {
     // Check if the user exists and is verified
     let user = await User.findOne({ mobile: mobileNumber });
     if (!user) {
-      return res.status(404).json({ error: "User not found. Please register first." });
+      return res
+        .status(404)
+        .json({ error: "User not found. Please register first." });
     }
 
     // Mark user as verified
@@ -167,9 +171,6 @@ exports.signInWithMobile = async (req, res) => {
     res.status(500).send("Internal server error");
   }
 };
-
-
-
 
 exports.sendOtp = async (req, res) => {
   const { email } = req.body;
@@ -213,15 +214,12 @@ exports.createUser = async (req, res) => {
       });
     }
 
-    // Hash the password
-    // const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create new user
     const newUser = new User({
       name,
       email,
       password,
-      // password: hashedPassword,
+     
     });
 
     // Save user to database
@@ -244,26 +242,6 @@ exports.createUser = async (req, res) => {
   }
 };
 
-// exports.signInWithEmail = async (req, res) => {
-//   const { email, password } = req.body;
-//   if (!email.trim() || !password.trim())
-//     return sendError(res, "email/password is missing!");
-
-//   const user = await User.findOne({ email });
-//   if (!user) return sendError(res, "User not found!");
-
-//   const isMatched = await user.comparePassword(password);
-//   if (!isMatched) return sendError(res, "email/password does not matched");
-
-//   const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-//     expiresIn: "1d",
-//   });
-
-//   res.json({
-//     success: true,
-//     user: { name: user.name, email: user.email, id: user._id, token },
-//   });
-// };
 
 exports.signin = async (req, res) => {
   const { email, password } = req.body;
