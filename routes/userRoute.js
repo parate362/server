@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { createUser,VerifyMobileOTP,signUpWithMobile, SendOTPToMobile,signin, verifyEmail, sendOtp, signInWithMobile } = require('../controller/userController')
+const { createUser, SendOTPToMobile,signin, verifyEmail, sendOtp, signInWithMobile, verifyAndSignUpWithMobile } = require('../controller/userController')
 const { validateUser, validate } = require('../middleware/validators')
 
 
@@ -10,8 +10,8 @@ router.post('/signin-email', signin)
 
 // Registration through Mobile
 router.post('/sendmobile-otp', SendOTPToMobile)
-router.post('/verify-otp', VerifyMobileOTP)
-router.post('/register-mobile', signUpWithMobile)
+router.post('/verify-and-signup', verifyAndSignUpWithMobile)
+// router.post('/register-mobile', signUpWithMobile)
 router.post('/signIn-mobile', signInWithMobile)
 
 

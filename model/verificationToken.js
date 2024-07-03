@@ -7,17 +7,22 @@ const verificationTokenSchema = new mongoose.Schema({
 
   email: {
     type: String,
-    required: true,
+    // required: true,
+  },
+  
+  mobile: {
+    type: Number,
+    // required: true,
   },
   
   otp:{
     type:String,
-    require:true,
+    // required:true,
   },
 
   token: {
     type: String,
-    required: true,
+    // required: true,
   },
   createdAt: {
     type: Date,
