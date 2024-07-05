@@ -219,6 +219,7 @@ exports.createUser = async (req, res) => {
       name,
       email,
       password,
+      verified: true,
      
     });
 
