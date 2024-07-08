@@ -3,7 +3,7 @@ const { createUser, SendOTPToMobile,signin, verifyEmail, sendOtp, signInWithMobi
 const { validateUser, validate } = require('../middleware/validators')
 
 
-router.post('/register-email',validateUser, validate, createUser)
+router.post('/register-email', createUser)
 router.post('/send-otp', sendOtp);
 router.post('/verify-email', verifyEmail)
 router.post('/signin-email', signin)
